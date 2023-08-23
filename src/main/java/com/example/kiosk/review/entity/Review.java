@@ -36,4 +36,8 @@ public class Review {
         this.deletedYn = true;
         this.deletedDate = LocalDateTime.now();
     }
+
+    public void updateRevice(String contents) {
+        this.contents = contents;
+    }
 }

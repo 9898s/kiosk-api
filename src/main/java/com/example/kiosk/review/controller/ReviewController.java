@@ -3,6 +3,7 @@ package com.example.kiosk.review.controller;
 import com.example.kiosk.review.entity.Review;
 import com.example.kiosk.review.model.AddReview;
 import com.example.kiosk.review.model.DeleteReview;
+import com.example.kiosk.review.model.UpdateReview;
 import com.example.kiosk.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,14 @@ public class ReviewController {
         return ResponseEntity.ok().body(AddReview.Response.of(review));
     }
 
+    // 리뷰 목록
+
     // 리뷰 수정
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateReview(@PathVariable Long id, @RequestBody @Valid UpdateReview.Request request) {
+        Review review = reviewService.updateReview(id, request);
+        return ResponseEntity.ok().body(UpdateReview.Response.of(review));
+    }
 
     // 리뷰 삭제
     @DeleteMapping("/delete/{id}")
