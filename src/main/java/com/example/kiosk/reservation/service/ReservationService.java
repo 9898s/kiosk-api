@@ -6,7 +6,6 @@ import com.example.kiosk.reservation.entity.Reservation;
 import com.example.kiosk.reservation.entity.ReservationRepository;
 import com.example.kiosk.reservation.model.AddReservation;
 import com.example.kiosk.reservation.model.UpdateReservation;
-import com.example.kiosk.reservation.type.ReservationStatus;
 import com.example.kiosk.shop.entity.Shop;
 import com.example.kiosk.shop.entity.ShopRepository;
 import lombok.RequiredArgsConstructor;
@@ -58,7 +57,7 @@ public class ReservationService {
         Reservation reservation = reservationRepository.findById(id)
                 .orElseThrow();
 
-        reservation.cancelReservation(ReservationStatus.CANCEL);
+        reservation.cancelReservation();
         return reservation;
     }
 }

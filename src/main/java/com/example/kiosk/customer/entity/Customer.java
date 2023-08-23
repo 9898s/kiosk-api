@@ -39,8 +39,8 @@ public class Customer {
         this.phone = phone;
     }
 
-    public void deleteCustomer(Boolean deletedYn, LocalDateTime deletedDate) {
-        this.deletedYn = deletedYn;
-        this.deletedDate = deletedDate;
+    public void deleteCustomer() {
+        this.deletedYn = true;
+        this.deletedDate = LocalDateTime.now();
     }
 }

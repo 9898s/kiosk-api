@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-
 @RequiredArgsConstructor
 @Service
 public class ManagerService {
@@ -38,7 +36,7 @@ public class ManagerService {
         Manager manager = managerRepository.findById(id)
                 .orElseThrow();
 
-        manager.deleteManager(true, LocalDateTime.now());
+        manager.deleteManager();
         return manager;
     }
 }

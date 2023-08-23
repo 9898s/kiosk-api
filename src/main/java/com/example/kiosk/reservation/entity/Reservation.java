@@ -51,7 +51,7 @@ public class Reservation {
         this.reservationDate = reservationDate;
     }
 
-    public void cancelReservation(ReservationStatus reservationStatus) {
-        this.reservationStatus = reservationStatus;
+    public void cancelReservation() {
+        this.reservationStatus = ReservationStatus.CANCEL;
     }
 }

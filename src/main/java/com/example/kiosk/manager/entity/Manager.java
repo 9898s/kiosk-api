@@ -39,8 +39,8 @@ public class Manager {
         this.partnerYn = partnerYn;
     }
 
-    public void deleteManager(Boolean deletedYn, LocalDateTime deletedDate) {
-        this.deletedYn = deletedYn;
-        this.deletedDate = deletedDate;
+    public void deleteManager() {
+        this.deletedYn = true;
+        this.deletedDate = LocalDateTime.now();
     }
 }

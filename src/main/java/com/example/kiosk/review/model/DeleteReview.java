@@ -17,7 +17,7 @@ public class DeleteReview {
     private Long id;
     private Boolean deletedYn;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime deletedDate;
 
     public static DeleteReview of(Review review) {

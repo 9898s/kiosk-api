@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-
 @RequiredArgsConstructor
 @Service
 public class CustomerService {
@@ -37,7 +35,7 @@ public class CustomerService {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow();
 
-        customer.deleteCustomer(true, LocalDateTime.now());
+        customer.deleteCustomer();
         return customer;
     }
 }

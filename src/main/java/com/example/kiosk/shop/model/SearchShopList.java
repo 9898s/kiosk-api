@@ -15,7 +15,6 @@ public class SearchShopList {
     private Long totalCount;
     private List<SearchShop> list;
 
-
     public static SearchShopList of(long countShop, List<SearchShop> searchShopList) {
         return SearchShopList.builder()
                 .totalCount(countShop)
