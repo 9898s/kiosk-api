@@ -1,6 +1,7 @@
 package com.example.kiosk.reservation.entity;
 
 import com.example.kiosk.customer.entity.Customer;
+import com.example.kiosk.reservation.type.ReservationStatus;
 import com.example.kiosk.shop.entity.Shop;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +24,16 @@ public class Reservation {
     @Column
     private LocalDateTime reservationDate;
 
+    @Column
+    private LocalDateTime arrivedDate;
+
+    @Column
+    private Boolean arrivedYn;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private ReservationStatus reservationStatus;
+
     @ManyToOne
     @JoinColumn(name = "shop_id")
     private Shop shop;
@@ -31,6 +42,16 @@ public class Reservation {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @Column
-    private Boolean arrivedYn;
+    public void arriveCustomer(LocalDateTime arrivedDate, Boolean arrivedYn) {
+        this.arrivedDate = arrivedDate;
+        this.arrivedYn = arrivedYn;
+    }
+
+    public void updateReservation(LocalDateTime reservationDate) {
+        this.reservationDate = reservationDate;
+    }
+
+    public void cancelReservation(ReservationStatus reservationStatus) {
+        this.reservationStatus = reservationStatus;
+    }
 }
