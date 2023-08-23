@@ -27,9 +27,9 @@ public class AddShop {
         @NotBlank(message = "매장 설명을 입력해주시길 바랍니다.")
         private String description;
 
-        public Shop toEntity() {
+        public Shop toEntity(Manager manager) {
             return Shop.builder()
-                    .manager(new Manager(this.managerId))
+                    .manager(manager)
                     .name(this.name)
                     .location(this.location)
                     .description(this.description)

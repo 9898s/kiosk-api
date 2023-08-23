@@ -31,12 +31,7 @@ public class Shop {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    public Shop(Long shopId) {
-        this.id = shopId;
-    }
-
-    public void updateShop(Long managerId, String name, String location, String description) {
-        this.manager = new Manager(managerId);
+    public void updateShop(String name, String location, String description) {
         this.name = name;
         this.location = location;
         this.description = description;

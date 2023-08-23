@@ -1,6 +1,7 @@
 package com.example.kiosk.manager.model;
 
 import com.example.kiosk.manager.entity.Manager;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,8 @@ public class DeleteManager {
     private Long id;
     private String email;
     private Boolean deletedYn;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime deletedDate;
 
     public static DeleteManager of(Manager manager) {

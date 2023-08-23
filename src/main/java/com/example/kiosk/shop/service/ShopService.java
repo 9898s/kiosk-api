@@ -1,5 +1,7 @@
 package com.example.kiosk.shop.service;
 
+import com.example.kiosk.manager.entity.Manager;
+import com.example.kiosk.manager.entity.ManagerRepository;
 import com.example.kiosk.shop.entity.Shop;
 import com.example.kiosk.shop.entity.ShopRepository;
 import com.example.kiosk.shop.model.AddShop;
@@ -14,11 +16,15 @@ import java.util.List;
 @Service
 public class ShopService {
     private final ShopRepository shopRepository;
+    private final ManagerRepository managerRepository;
 
     // 매장 등록
     @Transactional
     public Shop addShop(AddShop.Request request) {
-        return shopRepository.save(request.toEntity());
+        Manager manager = managerRepository.findById(request.getManagerId())
+                .orElseThrow();
+
+        return shopRepository.save(request.toEntity(manager));
     }
 
     // 매장 수정
@@ -27,7 +33,7 @@ public class ShopService {
         Shop shop = shopRepository.findById(id)
                 .orElseThrow();
 
-        shop.updateShop(request.getManagerId(), request.getName(), request.getLocation(), request.getDescription());
+        shop.updateShop(request.getName(), request.getLocation(), request.getDescription());
         return shop;
     }
 
@@ -41,6 +47,7 @@ public class ShopService {
     }
 
     // 매장 검색 수
+    @Transactional(readOnly = true)
     public Long countSearchShop(String name) {
         return shopRepository.countAllByNameContains(name);
     }
@@ -48,10 +55,11 @@ public class ShopService {
     // 매장 검색
     @Transactional(readOnly = true)
     public List<Shop> searchShop(String name) {
-        List<Shop> shopList = shopRepository.findAllByNameContains(name);
-        return shopList;
+        return shopRepository.findAllByNameContains(name);
     }
 
+    // 매장 정보
+    @Transactional(readOnly = true)
     public Shop detailShop(Long id) {
         return shopRepository.findById(id)
                 .orElseThrow();

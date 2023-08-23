@@ -17,6 +17,8 @@ public class DeleteCustomer {
     private Long id;
     private String email;
     private Boolean deletedYn;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime deletedDate;
 
     public static DeleteCustomer of(Customer customer) {

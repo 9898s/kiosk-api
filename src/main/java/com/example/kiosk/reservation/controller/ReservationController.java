@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReservationController {
     private final ReservationService reservationService;
 
-
     // 예약 등록
     @PostMapping("/add")
     public ResponseEntity<?> addReservation(@RequestBody AddReservation.Request request) {

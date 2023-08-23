@@ -55,10 +55,7 @@ public class ShopController {
             searchShopList.add(searchShop);
         });
 
-        return ResponseEntity.ok().body(SearchShopList.builder()
-                .totalCount(countShop)
-                .list(searchShopList)
-                .build());
+        return ResponseEntity.ok().body(SearchShopList.of(countShop, searchShopList));
     }
 
     // 매장 정보

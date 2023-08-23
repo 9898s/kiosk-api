@@ -18,7 +18,7 @@ public class Manager {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(unique = true)
     private String email;
 
     @Column
@@ -32,10 +32,6 @@ public class Manager {
 
     @Column
     private LocalDateTime deletedDate;
-
-    public Manager(Long managerId) {
-        this.id = managerId;
-    }
 
     public void updateManager(String email, String password, Boolean partnerYn) {
         this.email = email;
