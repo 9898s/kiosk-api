@@ -30,4 +30,11 @@ public class Shop {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+
+    public void updateShop(Long managerId, String name, String location, String description) {
+        this.manager = new Manager(managerId);
+        this.name = name;
+        this.location = location;
+        this.description = description;
+    }
 }
