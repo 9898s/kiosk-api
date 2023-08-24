@@ -28,11 +28,11 @@ public class ReservationService {
     // 예약 등록
     @Transactional
     public Reservation addReservation(AddReservation.Request request) {
-        // 매장 번호 찾을 수 없음
+        // 매장 아이디 번호 검사
         Shop shop = shopRepository.findById(request.getShopId())
                 .orElseThrow(() -> new ReservationException(NOT_FOUND_ID));
 
-        // 고객 번호 찾을 수 없음
+        // 고객 아이디 번호 검사
         Customer customer = customerRepository.findById(request.getCustomerId())
                 .orElseThrow(() -> new ReservationException(NOT_FOUND_ID));
 
@@ -48,7 +48,7 @@ public class ReservationService {
     // 예약 도착
     @Transactional
     public Reservation arriveReservation(Long id) {
-        // 예약 번호 찾을 수 없음
+        // 예약 아이디 번호
         Reservation reservation = getReservationId(id);
 
         // 이미 도착 처리
@@ -66,8 +66,10 @@ public class ReservationService {
     // 예약 수정
     @Transactional
     public Reservation updateReservation(Long id, UpdateReservation.Request request) {
-        // 예약 번호 찾을 수 없음
+        // 예약 아이디 번호
         Reservation reservation = getReservationId(id);
+
+        // 이미 도착 처리
 
         // 타임 아웃
         long minutes = getReserveMinutes(request.getReservationDate());
@@ -82,7 +84,7 @@ public class ReservationService {
     // 예약 취소
     @Transactional
     public Reservation cancelReservation(Long id) {
-        // 예약 번호 찾을 수 없음
+        // 예약 아이디 번호
         Reservation reservation = getReservationId(id);
 
         // 이미 도착 처리
@@ -97,11 +99,13 @@ public class ReservationService {
         return reservation;
     }
 
+    // 예약 아이디 번호
     private Reservation getReservationId(Long id) {
         return reservationRepository.findById(id)
                 .orElseThrow(() -> new ReservationException(NOT_FOUND_ID));
     }
 
+    // 예약 시간 검사
     private long getReserveMinutes(LocalDateTime localDateTime) {
         Duration between = Duration.between(LocalDateTime.now(), localDateTime);
         return between.toMinutes();

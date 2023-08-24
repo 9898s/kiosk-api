@@ -20,6 +20,7 @@ public class ManagerService {
     // 회원가입
     @Transactional
     public Manager signupManager(SignupManager.Request request) {
+        // 이메일 중복 검사
         existManagerEmail(request.getEmail());
 
         request.setPartnerYn(true);
@@ -29,7 +30,10 @@ public class ManagerService {
     // 정보수정
     @Transactional
     public Manager updateManager(Long id, UpdateManager.Request request) {
+        // 매니저 아이디 번호
         Manager manager = getManagerId(id);
+
+        // 이메일 중복 검사
         existManagerEmail(request.getEmail());
 
         manager.updateManager(request.getEmail(), request.getPassword(), request.getPartnerYn());
@@ -39,19 +43,20 @@ public class ManagerService {
     // 계정삭제
     @Transactional
     public Manager deleteManager(Long id) {
+        // 매니저 아이디 번호
         Manager manager = getManagerId(id);
 
         manager.deleteManager();
         return manager;
     }
 
-    // 아아디를 찾을 수 없는 경우
+    // 매니저 아이디 번호
     private Manager getManagerId(Long id) {
         return managerRepository.findById(id)
                 .orElseThrow(() -> new ManagerException(NOT_FOUND_ID));
     }
 
-    // 이미 가입된 이메일이 있을 경우
+    // 중복 이메일 검사
     private void existManagerEmail(String email) {
         if (managerRepository.findByEmail(email).isPresent()) {
             throw new ManagerException(EXIST_ACCOUNT_EMAIL);

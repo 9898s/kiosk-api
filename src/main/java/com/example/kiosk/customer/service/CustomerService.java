@@ -20,6 +20,7 @@ public class CustomerService {
     // 회원가입
     @Transactional
     public Customer signupCustomer(SignupCustomer.Request request) {
+        // 중복 이메일 체크
         existCustomerEmail(request.getEmail());
 
         return customerRepository.save(request.toEntity());
@@ -28,7 +29,10 @@ public class CustomerService {
     // 정보수정
     @Transactional
     public Customer updateCustomer(Long id, UpdateCustomer.Request request) {
+        // 고객 아이디 번호
         Customer customer = getCustomerId(id);
+
+        // 중복 이메일 체크
         existCustomerEmail(request.getEmail());
 
         customer.updateCustomer(request.getEmail(), request.getPassword(), request.getPhone());
@@ -38,19 +42,20 @@ public class CustomerService {
     // 계정삭제
     @Transactional
     public Customer deleteCustomer(Long id) {
+        // 고객 아이디 번호
         Customer customer = getCustomerId(id);
 
         customer.deleteCustomer();
         return customer;
     }
 
-    // 아이디가 존재하지 않을 경우
+    // 고객 아이디 번호
     private Customer getCustomerId(Long id) {
         return customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerException(NOT_FOUND_ID));
     }
 
-    // 이메일이 이미 존재하는 경우
+    // 이메일 중복 검사
     private void existCustomerEmail(String email) {
         if (customerRepository.findByEmail(email).isPresent()) {
             throw new CustomerException(EXIST_ACCOUNT_EMAIL);

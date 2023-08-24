@@ -25,6 +25,7 @@ public class ShopService {
     // 매장 등록
     @Transactional
     public Shop addShop(AddShop.Request request) {
+        // 매니저 아이디 검사
         Manager manager = managerRepository.findById(request.getManagerId())
                 .orElseThrow(() -> new ManagerException(NOT_FOUND_ID));
 
@@ -34,6 +35,7 @@ public class ShopService {
     // 매장 수정
     @Transactional
     public Shop updateShop(Long id, UpdateShop.Request request) {
+        // 매장 아이디 번호
         Shop shop = getShopId(id);
 
         shop.updateShop(request.getName(), request.getLocation(), request.getDescription());
@@ -43,6 +45,7 @@ public class ShopService {
     // 매장 삭제
     @Transactional
     public void deleteShop(Long id) {
+        // 매장 아이디 번호
         Shop shop = getShopId(id);
 
         shopRepository.delete(shop);
@@ -66,6 +69,7 @@ public class ShopService {
         return getShopId(id);
     }
 
+    // 매장 아이디 번호
     private Shop getShopId(Long id) {
         return shopRepository.findById(id)
                 .orElseThrow(() -> new ShopException(NOT_FOUND_ID));
