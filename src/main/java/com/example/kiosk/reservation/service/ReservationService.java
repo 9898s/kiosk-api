@@ -4,6 +4,7 @@ import com.example.kiosk.customer.entity.Customer;
 import com.example.kiosk.customer.entity.CustomerRepository;
 import com.example.kiosk.reservation.entity.Reservation;
 import com.example.kiosk.reservation.entity.ReservationRepository;
+import com.example.kiosk.reservation.exception.ReservationException;
 import com.example.kiosk.reservation.model.AddReservation;
 import com.example.kiosk.reservation.model.UpdateReservation;
 import com.example.kiosk.shop.entity.Shop;
@@ -12,7 +13,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
+
+import static com.example.kiosk.global.type.ErrorCode.*;
 
 @RequiredArgsConstructor
 @Service
@@ -24,11 +28,19 @@ public class ReservationService {
     // 예약 등록
     @Transactional
     public Reservation addReservation(AddReservation.Request request) {
+        // 매장 번호 찾을 수 없음
         Shop shop = shopRepository.findById(request.getShopId())
-                .orElseThrow();
+                .orElseThrow(() -> new ReservationException(NOT_FOUND_ID));
 
+        // 고객 번호 찾을 수 없음
         Customer customer = customerRepository.findById(request.getCustomerId())
-                .orElseThrow();
+                .orElseThrow(() -> new ReservationException(NOT_FOUND_ID));
+
+        // 타임 아웃
+        long minutes = getReserveMinutes(request.getReservationDate());
+        if (minutes <= 10) {
+            throw new ReservationException(NOT_RESERVE_TIME);
+        }
 
         return reservationRepository.save(request.toEntity(shop, customer));
     }
@@ -36,28 +48,62 @@ public class ReservationService {
     // 예약 도착
     @Transactional
     public Reservation arriveReservation(Long id) {
-        Reservation reservation = reservationRepository.findById(id)
-                .orElseThrow();
+        // 예약 번호 찾을 수 없음
+        Reservation reservation = getReservationId(id);
 
-        reservation.arriveCustomer(LocalDateTime.now(), true);
+        // 이미 도착 처리
+
+        // 타임 아웃
+        long minutes = getReserveMinutes(reservation.getReservationDate());
+        if (minutes <= 10) {
+            throw new ReservationException(NOT_ARRIVE_TIME);
+        }
+
+        reservation.arriveCustomer();
         return reservation;
     }
 
     // 예약 수정
     @Transactional
     public Reservation updateReservation(Long id, UpdateReservation.Request request) {
-        Reservation reservation = reservationRepository.findById(id)
-                .orElseThrow();
+        // 예약 번호 찾을 수 없음
+        Reservation reservation = getReservationId(id);
+
+        // 타임 아웃
+        long minutes = getReserveMinutes(request.getReservationDate());
+        if (minutes <= 10) {
+            throw new ReservationException(NOT_RESERVE_TIME);
+        }
 
         reservation.updateReservation(request.getReservationDate());
         return reservation;
     }
 
+    // 예약 취소
+    @Transactional
     public Reservation cancelReservation(Long id) {
-        Reservation reservation = reservationRepository.findById(id)
-                .orElseThrow();
+        // 예약 번호 찾을 수 없음
+        Reservation reservation = getReservationId(id);
+
+        // 이미 도착 처리
+
+        // 타임 아웃
+        long minutes = getReserveMinutes(reservation.getReservationDate());
+        if (minutes <= 10) {
+            throw new ReservationException(NOT_CANCEL_TIME);
+        }
 
         reservation.cancelReservation();
         return reservation;
+    }
+
+    private Reservation getReservationId(Long id) {
+        return reservationRepository.findById(id)
+                .orElseThrow(() -> new ReservationException(NOT_FOUND_ID));
+    }
+
+    private long getReserveMinutes(LocalDateTime localDateTime) {
+        Duration between = Duration.between(LocalDateTime.now(), localDateTime);
+        return between.toMinutes();
     }
 }

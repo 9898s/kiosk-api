@@ -43,9 +43,9 @@ public class Reservation extends BaseEntity {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    public void arriveCustomer(LocalDateTime arrivedDate, Boolean arrivedYn) {
-        this.arrivedDate = arrivedDate;
-        this.arrivedYn = arrivedYn;
+    public void arriveCustomer() {
+        this.arrivedDate = LocalDateTime.now();
+        this.arrivedYn = true;
     }
 
     public void updateReservation(LocalDateTime reservationDate) {
