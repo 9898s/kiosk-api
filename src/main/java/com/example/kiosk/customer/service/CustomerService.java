@@ -28,7 +28,7 @@ public class CustomerService {
     // 정보수정
     @Transactional
     public Customer updateCustomer(Long id, UpdateCustomer.Request request) {
-        Customer customer = notFoundCustomerId(id);
+        Customer customer = getCustomerId(id);
         existCustomerEmail(request.getEmail());
 
         customer.updateCustomer(request.getEmail(), request.getPassword(), request.getPhone());
@@ -38,14 +38,14 @@ public class CustomerService {
     // 계정삭제
     @Transactional
     public Customer deleteCustomer(Long id) {
-        Customer customer = notFoundCustomerId(id);
+        Customer customer = getCustomerId(id);
 
         customer.deleteCustomer();
         return customer;
     }
 
     // 아이디가 존재하지 않을 경우
-    private Customer notFoundCustomerId(Long id) {
+    private Customer getCustomerId(Long id) {
         return customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerException(NOT_FOUND_ID));
     }
