@@ -1,6 +1,7 @@
 package com.example.kiosk.reservation.entity;
 
 import com.example.kiosk.customer.entity.Customer;
+import com.example.kiosk.global.domain.BaseEntity;
 import com.example.kiosk.reservation.type.ReservationStatus;
 import com.example.kiosk.shop.entity.Shop;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Entity
-public class Reservation {
+public class Reservation extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

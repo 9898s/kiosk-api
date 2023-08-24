@@ -1,5 +1,6 @@
 package com.example.kiosk.manager.entity;
 
+import com.example.kiosk.global.domain.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Entity
-public class Manager {
+public class Manager extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

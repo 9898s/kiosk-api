@@ -24,8 +24,6 @@ public class ReviewController {
         return ResponseEntity.ok().body(AddReview.Response.of(review));
     }
 
-    // 리뷰 목록
-
     // 리뷰 수정
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateReview(@PathVariable Long id, @RequestBody @Valid UpdateReview.Request request) {

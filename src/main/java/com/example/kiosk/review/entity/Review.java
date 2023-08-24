@@ -1,5 +1,6 @@
 package com.example.kiosk.review.entity;
 
+import com.example.kiosk.global.domain.BaseEntity;
 import com.example.kiosk.reservation.entity.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Entity
-public class Review {
+public class Review extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

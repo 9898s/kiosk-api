@@ -29,10 +29,14 @@ public class UpdateReservation {
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime reservationDate;
 
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+        private LocalDateTime updatedDate;
+
         public static Response of(Reservation reservation) {
             return Response.builder()
                     .id(reservation.getId())
                     .reservationDate(reservation.getReservationDate())
+                    .updatedDate(reservation.getUpdatedDate())
                     .build();
         }
     }

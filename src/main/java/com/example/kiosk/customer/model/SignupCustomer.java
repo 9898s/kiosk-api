@@ -1,6 +1,7 @@
 package com.example.kiosk.customer.model;
 
 import com.example.kiosk.customer.entity.Customer;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 public class SignupCustomer {
     @AllArgsConstructor
@@ -43,12 +45,16 @@ public class SignupCustomer {
         private String password;
         private String phone;
 
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+        private LocalDateTime createdDate;
+
         public static Response of(Customer customer) {
             return Response.builder()
                     .id(customer.getId())
                     .email(customer.getEmail())
                     .password(customer.getPassword())
                     .phone(customer.getPhone())
+                    .createdDate(customer.getCreatedDate())
                     .build();
         }
     }

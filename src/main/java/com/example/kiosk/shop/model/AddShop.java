@@ -2,12 +2,14 @@ package com.example.kiosk.shop.model;
 
 import com.example.kiosk.manager.entity.Manager;
 import com.example.kiosk.shop.entity.Shop;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 public class AddShop {
 
@@ -48,6 +50,9 @@ public class AddShop {
         private String location;
         private String description;
 
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+        private LocalDateTime createdDate;
+
         public static Response of(Shop shop) {
             return Response.builder()
                     .id(shop.getId())
@@ -55,6 +60,7 @@ public class AddShop {
                     .name(shop.getName())
                     .location(shop.getLocation())
                     .description(shop.getDescription())
+                    .createdDate(shop.getCreatedDate())
                     .build();
         }
     }

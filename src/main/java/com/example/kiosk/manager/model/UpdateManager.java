@@ -1,6 +1,7 @@
 package com.example.kiosk.manager.model;
 
 import com.example.kiosk.manager.entity.Manager;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 public class UpdateManager {
 
@@ -34,11 +36,15 @@ public class UpdateManager {
         private String email;
         private Boolean partnerYn;
 
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+        private LocalDateTime updatedDate;
+
         public static UpdateManager.Response of(Manager manager) {
             return Response.builder()
                     .id(manager.getId())
                     .email(manager.getEmail())
                     .partnerYn(manager.getPartnerYn())
+                    .updatedDate(manager.getUpdatedDate())
                     .build();
         }
     }

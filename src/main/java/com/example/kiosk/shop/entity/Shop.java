@@ -1,5 +1,6 @@
 package com.example.kiosk.shop.entity;
 
+import com.example.kiosk.global.domain.BaseEntity;
 import com.example.kiosk.manager.entity.Manager;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Entity
-public class Shop {
+public class Shop extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
