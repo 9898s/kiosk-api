@@ -9,8 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.example.kiosk.global.type.ErrorCode.EXIST_ACCOUNT_EMAIL;
-import static com.example.kiosk.global.type.ErrorCode.NOT_FOUND_ID;
+import static com.example.kiosk.global.type.ErrorCode.*;
 
 @RequiredArgsConstructor
 @Service
@@ -45,6 +44,11 @@ public class CustomerService {
         // 고객 아이디 번호
         Customer customer = getCustomerId(id);
 
+        // 계정 삭제 검사
+        if (Boolean.TRUE.equals(customer.getDeletedYn())) {
+            throw new CustomerException(ALREADY_DELETE_CUSTOMER);
+        }
+
         customer.deleteCustomer();
         return customer;
     }
@@ -52,13 +56,13 @@ public class CustomerService {
     // 고객 아이디 번호
     private Customer getCustomerId(Long id) {
         return customerRepository.findById(id)
-                .orElseThrow(() -> new CustomerException(NOT_FOUND_ID));
+                .orElseThrow(() -> new CustomerException(NOT_FOUND_CUSTOMER_ID));
     }
 
     // 이메일 중복 검사
     private void existCustomerEmail(String email) {
         if (customerRepository.findByEmail(email).isPresent()) {
-            throw new CustomerException(EXIST_ACCOUNT_EMAIL);
+            throw new CustomerException(EXIST_CUSTOMER_EMAIL);
         }
     }
 }

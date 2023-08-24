@@ -14,7 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static com.example.kiosk.global.type.ErrorCode.NOT_FOUND_ID;
+import static com.example.kiosk.global.type.ErrorCode.NOT_FOUND_MANAGER_ID;
+import static com.example.kiosk.global.type.ErrorCode.NOT_FOUND_SHOP_ID;
 
 @RequiredArgsConstructor
 @Service
@@ -27,7 +28,7 @@ public class ShopService {
     public Shop addShop(AddShop.Request request) {
         // 매니저 아이디 검사
         Manager manager = managerRepository.findById(request.getManagerId())
-                .orElseThrow(() -> new ManagerException(NOT_FOUND_ID));
+                .orElseThrow(() -> new ManagerException(NOT_FOUND_MANAGER_ID));
 
         return shopRepository.save(request.toEntity(manager));
     }
@@ -72,6 +73,6 @@ public class ShopService {
     // 매장 아이디 번호
     private Shop getShopId(Long id) {
         return shopRepository.findById(id)
-                .orElseThrow(() -> new ShopException(NOT_FOUND_ID));
+                .orElseThrow(() -> new ShopException(NOT_FOUND_SHOP_ID));
     }
 }

@@ -42,7 +42,6 @@ public class SignupCustomer {
     public static class Response {
         private Long id;
         private String email;
-        private String password;
         private String phone;
 
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -52,7 +51,6 @@ public class SignupCustomer {
             return Response.builder()
                     .id(customer.getId())
                     .email(customer.getEmail())
-                    .password(customer.getPassword())
                     .phone(customer.getPhone())
                     .createdDate(customer.getCreatedDate())
                     .build();

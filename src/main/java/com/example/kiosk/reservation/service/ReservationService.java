@@ -7,6 +7,7 @@ import com.example.kiosk.reservation.entity.ReservationRepository;
 import com.example.kiosk.reservation.exception.ReservationException;
 import com.example.kiosk.reservation.model.AddReservation;
 import com.example.kiosk.reservation.model.UpdateReservation;
+import com.example.kiosk.reservation.type.ReservationStatus;
 import com.example.kiosk.shop.entity.Shop;
 import com.example.kiosk.shop.entity.ShopRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,11 +31,11 @@ public class ReservationService {
     public Reservation addReservation(AddReservation.Request request) {
         // 매장 아이디 번호 검사
         Shop shop = shopRepository.findById(request.getShopId())
-                .orElseThrow(() -> new ReservationException(NOT_FOUND_ID));
+                .orElseThrow(() -> new ReservationException(NOT_FOUND_SHOP_ID));
 
         // 고객 아이디 번호 검사
         Customer customer = customerRepository.findById(request.getCustomerId())
-                .orElseThrow(() -> new ReservationException(NOT_FOUND_ID));
+                .orElseThrow(() -> new ReservationException(NOT_FOUND_CUSTOMER_ID));
 
         // 타임 아웃
         long minutes = getReserveMinutes(request.getReservationDate());
@@ -52,6 +53,10 @@ public class ReservationService {
         Reservation reservation = getReservationId(id);
 
         // 이미 도착 처리
+        alreadyArrive(reservation);
+
+        // 이미 취소 처리
+        alreadyCancel(reservation);
 
         // 타임 아웃
         long minutes = getReserveMinutes(reservation.getReservationDate());
@@ -70,6 +75,10 @@ public class ReservationService {
         Reservation reservation = getReservationId(id);
 
         // 이미 도착 처리
+        alreadyArrive(reservation);
+
+        // 이미 취소 처리
+        alreadyCancel(reservation);
 
         // 타임 아웃
         long minutes = getReserveMinutes(request.getReservationDate());
@@ -88,6 +97,10 @@ public class ReservationService {
         Reservation reservation = getReservationId(id);
 
         // 이미 도착 처리
+        alreadyArrive(reservation);
+
+        // 이미 취소 처리
+        alreadyCancel(reservation);
 
         // 타임 아웃
         long minutes = getReserveMinutes(reservation.getReservationDate());
@@ -102,12 +115,26 @@ public class ReservationService {
     // 예약 아이디 번호
     private Reservation getReservationId(Long id) {
         return reservationRepository.findById(id)
-                .orElseThrow(() -> new ReservationException(NOT_FOUND_ID));
+                .orElseThrow(() -> new ReservationException(NOT_FOUND_RESERVE_ID));
     }
 
     // 예약 시간 검사
     private long getReserveMinutes(LocalDateTime localDateTime) {
         Duration between = Duration.between(LocalDateTime.now(), localDateTime);
         return between.toMinutes();
+    }
+
+    // 이미 도착
+    private void alreadyArrive(Reservation reservation) {
+        if (Boolean.TRUE.equals(reservation.getArrivedYn())) {
+            throw new ReservationException(ALREADY_ARRIVE_STATUS);
+        }
+    }
+
+    // 이미 취소
+    private void alreadyCancel(Reservation reservation) {
+        if (reservation.getReservationStatus() == ReservationStatus.CANCEL) {
+            throw new ReservationException(ALREADY_CANCEL_STATUS);
+        }
     }
 }

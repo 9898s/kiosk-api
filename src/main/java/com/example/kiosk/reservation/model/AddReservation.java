@@ -29,6 +29,7 @@ public class AddReservation {
                     .shop(shop)
                     .customer(customer)
                     .reservationDate(this.reservationDate)
+                    .arrivedYn(false)
                     .build();
         }
     }
@@ -38,6 +39,7 @@ public class AddReservation {
     @Builder
     @Data
     public static class Response {
+        private Long id;
         private Long shopId;
         private Long customerId;
 
@@ -49,6 +51,7 @@ public class AddReservation {
 
         public static Response of(Reservation reservation) {
             return Response.builder()
+                    .id(reservation.getId())
                     .shopId(reservation.getShop().getId())
                     .customerId(reservation.getCustomer().getId())
                     .reservationDate(reservation.getReservationDate())
