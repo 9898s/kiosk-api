@@ -2,8 +2,10 @@ package com.example.kiosk.shop.service;
 
 import com.example.kiosk.manager.entity.Manager;
 import com.example.kiosk.manager.entity.ManagerRepository;
+import com.example.kiosk.manager.exception.ManagerException;
 import com.example.kiosk.shop.entity.Shop;
 import com.example.kiosk.shop.entity.ShopRepository;
+import com.example.kiosk.shop.exception.ShopException;
 import com.example.kiosk.shop.model.AddShop;
 import com.example.kiosk.shop.model.UpdateShop;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static com.example.kiosk.global.type.ErrorCode.NOT_FOUND_ID;
 
 @RequiredArgsConstructor
 @Service
@@ -22,7 +26,7 @@ public class ShopService {
     @Transactional
     public Shop addShop(AddShop.Request request) {
         Manager manager = managerRepository.findById(request.getManagerId())
-                .orElseThrow();
+                .orElseThrow(() -> new ManagerException(NOT_FOUND_ID));
 
         return shopRepository.save(request.toEntity(manager));
     }
@@ -30,8 +34,7 @@ public class ShopService {
     // 매장 수정
     @Transactional
     public Shop updateShop(Long id, UpdateShop.Request request) {
-        Shop shop = shopRepository.findById(id)
-                .orElseThrow();
+        Shop shop = getShopId(id);
 
         shop.updateShop(request.getName(), request.getLocation(), request.getDescription());
         return shop;
@@ -40,8 +43,7 @@ public class ShopService {
     // 매장 삭제
     @Transactional
     public void deleteShop(Long id) {
-        Shop shop = shopRepository.findById(id)
-                .orElseThrow();
+        Shop shop = getShopId(id);
 
         shopRepository.delete(shop);
     }
@@ -61,7 +63,11 @@ public class ShopService {
     // 매장 정보
     @Transactional(readOnly = true)
     public Shop detailShop(Long id) {
+        return getShopId(id);
+    }
+
+    private Shop getShopId(Long id) {
         return shopRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new ShopException(NOT_FOUND_ID));
     }
 }
