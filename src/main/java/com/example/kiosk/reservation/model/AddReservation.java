@@ -2,6 +2,7 @@ package com.example.kiosk.reservation.model;
 
 import com.example.kiosk.customer.entity.Customer;
 import com.example.kiosk.reservation.entity.Reservation;
+import com.example.kiosk.reservation.type.ReservationStatus;
 import com.example.kiosk.shop.entity.Shop;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,7 @@ public class AddReservation {
                     .customer(customer)
                     .reservationDate(this.reservationDate)
                     .arrivedYn(false)
+                    .reservationStatus(ReservationStatus.NONE)
                     .build();
         }
     }

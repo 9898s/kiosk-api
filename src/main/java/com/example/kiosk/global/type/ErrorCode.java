@@ -25,6 +25,7 @@ public enum ErrorCode {
     NOT_RESERVE_TIME("예약할 수 없는 시간입니다."),
     NOT_ARRIVE_TIME("도착 처리할 수 없는 시간입니다."),
     NOT_CANCEL_TIME("취소 처리 할 수 없는 시간입니다."),
+    NOT_RESERVE_OK("승인 처리된 예약이 아닙니다."),
 
     NOT_FOUND_REVIEW_ID("찾을 수 없는 리뷰 아이디 번호입니다."),
     NOT_ARRIVE_STATUS("도착 상태의 예약이 아닙니다."),

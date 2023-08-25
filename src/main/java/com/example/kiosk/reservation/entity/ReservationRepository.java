@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
-    List<Reservation> findAllByShopId(Long shopId);
+    List<Reservation> findAllByShopIdOrderByReservationDateDesc(Long shopId);
 }

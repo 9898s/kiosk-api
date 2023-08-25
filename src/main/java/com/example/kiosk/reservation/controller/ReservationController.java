@@ -68,4 +68,12 @@ public class ReservationController {
         });
         return ResponseEntity.ok().body(ListReservation.of(countListReservation.get(), shopReservations));
     }
+
+    // 예약 상태 변경
+    @PatchMapping("/status")
+    public ResponseEntity<?> statusReservation(@RequestBody StatusReservation.Request request) {
+        Reservation reservation = reservationService.statusReservation(request);
+
+        return ResponseEntity.ok().body(StatusReservation.Response.of(reservation));
+    }
 }

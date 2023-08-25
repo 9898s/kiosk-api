@@ -6,6 +6,7 @@ import com.example.kiosk.reservation.entity.Reservation;
 import com.example.kiosk.reservation.entity.ReservationRepository;
 import com.example.kiosk.reservation.exception.ReservationException;
 import com.example.kiosk.reservation.model.AddReservation;
+import com.example.kiosk.reservation.model.StatusReservation;
 import com.example.kiosk.reservation.model.UpdateReservation;
 import com.example.kiosk.reservation.type.ReservationStatus;
 import com.example.kiosk.shop.entity.Shop;
@@ -58,6 +59,10 @@ public class ReservationService {
 
         // 이미 취소 처리
         alreadyCancel(reservation);
+
+        if (reservation.getReservationStatus() != ReservationStatus.OK) {
+            throw new ReservationException(NOT_RESERVE_OK);
+        }
 
         // 타임 아웃
         long minutes = getReserveMinutes(reservation.getReservationDate());
@@ -121,7 +126,16 @@ public class ReservationService {
             throw new ReservationException(NOT_FOUND_SHOP_ID);
         }
 
-        return reservationRepository.findAllByShopId(shopId);
+        return reservationRepository.findAllByShopIdOrderByReservationDateDesc(shopId);
+    }
+
+    // 예약 상태 수정
+    @Transactional
+    public Reservation statusReservation(StatusReservation.Request request) {
+        Reservation reservation = getReservationId(request.getId());
+
+        reservation.statusReservation(request.getReservationStatus());
+        return reservation;
     }
 
     // 예약 아이디 번호
@@ -149,5 +163,4 @@ public class ReservationService {
             throw new ReservationException(ALREADY_CANCEL_STATUS);
         }
     }
-
 }
