@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static com.example.kiosk.global.type.ErrorCode.*;
 
@@ -112,6 +113,23 @@ public class ReservationService {
         return reservation;
     }
 
+    // 예약 목록
+    @Transactional(readOnly = true)
+    public List<Reservation> listReservation(Long shopId) {
+        // 매장 아이디 번호 검사
+        if (shopRepository.findById(shopId).isEmpty()) {
+            throw new ReservationException(NOT_FOUND_SHOP_ID);
+        }
+
+        return reservationRepository.findAllByShopId(shopId);
+    }
+
+    // 예약 목록 개수
+    @Transactional(readOnly = true)
+    public Long countListReservation(Long shopId) {
+        return reservationRepository.countByShopId(shopId);
+    }
+
     // 예약 아이디 번호
     private Reservation getReservationId(Long id) {
         return reservationRepository.findById(id)
@@ -137,4 +155,5 @@ public class ReservationService {
             throw new ReservationException(ALREADY_CANCEL_STATUS);
         }
     }
+
 }

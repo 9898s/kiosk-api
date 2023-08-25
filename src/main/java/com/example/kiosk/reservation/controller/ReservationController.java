@@ -1,14 +1,14 @@
 package com.example.kiosk.reservation.controller;
 
 import com.example.kiosk.reservation.entity.Reservation;
-import com.example.kiosk.reservation.model.AddReservation;
-import com.example.kiosk.reservation.model.ArriveReservation;
-import com.example.kiosk.reservation.model.CancelReservation;
-import com.example.kiosk.reservation.model.UpdateReservation;
+import com.example.kiosk.reservation.model.*;
 import com.example.kiosk.reservation.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestMapping("/api/reservation")
 @RequiredArgsConstructor
@@ -42,5 +42,28 @@ public class ReservationController {
     public ResponseEntity<?> cancelReservation(@PathVariable Long id) {
         Reservation reservation = reservationService.cancelReservation(id);
         return ResponseEntity.ok().body(CancelReservation.of(reservation));
+    }
+
+    // 예약 목록
+    @GetMapping("/list/{shopId}")
+    public ResponseEntity<?> listReservation(@PathVariable Long shopId) {
+        List<Reservation> reservations = reservationService.listReservation(shopId);
+
+        Long countListReservation = reservationService.countListReservation(shopId);
+        List<ShopReservation> shopReservations = new ArrayList<>();
+
+        reservations.forEach(e -> {
+            ShopReservation shopReservation = ShopReservation.builder()
+                    .id(e.getId())
+                    .customerPhone(e.getCustomer().getPhone())
+                    .reservationDate(e.getReservationDate())
+                    .arrivedDate(e.getArrivedDate())
+                    .arrivedYn(e.getArrivedYn())
+                    .reservationStatus(e.getReservationStatus())
+                    .build();
+
+            shopReservations.add(shopReservation);
+        });
+        return ResponseEntity.ok().body(ListReservation.of(countListReservation, shopReservations));
     }
 }
