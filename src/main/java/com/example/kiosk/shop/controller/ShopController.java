@@ -44,7 +44,7 @@ public class ShopController {
     public ResponseEntity<?> searchShop(@PathVariable String name) {
         List<Shop> shopList = shopService.searchShop(name);
 
-        long countShop = shopService.countSearchShop(name);
+        AtomicLong countShop = new AtomicLong(0L);
         List<SearchShop> searchShopList = new ArrayList<>();
 
         shopList.forEach(e -> {
@@ -55,9 +55,10 @@ public class ShopController {
                     .build();
 
             searchShopList.add(searchShop);
+            countShop.getAndIncrement();
         });
 
-        return ResponseEntity.ok().body(SearchShopList.of(countShop, searchShopList));
+        return ResponseEntity.ok().body(SearchShopList.of(countShop.get(), searchShopList));
     }
 
     // 매장 정보

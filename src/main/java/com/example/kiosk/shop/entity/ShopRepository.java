@@ -8,6 +8,4 @@ import java.util.List;
 @Repository
 public interface ShopRepository extends JpaRepository<Shop, Long> {
     List<Shop> findAllByNameContains(String name);
-
-    Long countAllByNameContains(String name);
 }

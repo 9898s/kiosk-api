@@ -124,12 +124,6 @@ public class ReservationService {
         return reservationRepository.findAllByShopId(shopId);
     }
 
-    // 예약 목록 개수
-    @Transactional(readOnly = true)
-    public Long countListReservation(Long shopId) {
-        return reservationRepository.countByShopId(shopId);
-    }
-
     // 예약 아이디 번호
     private Reservation getReservationId(Long id) {
         return reservationRepository.findById(id)

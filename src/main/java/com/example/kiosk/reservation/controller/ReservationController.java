@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @RequestMapping("/api/reservation")
 @RequiredArgsConstructor
@@ -49,7 +50,7 @@ public class ReservationController {
     public ResponseEntity<?> listReservation(@PathVariable Long shopId) {
         List<Reservation> reservations = reservationService.listReservation(shopId);
 
-        Long countListReservation = reservationService.countListReservation(shopId);
+        AtomicLong countListReservation = new AtomicLong(0L);
         List<ShopReservation> shopReservations = new ArrayList<>();
 
         reservations.forEach(e -> {
@@ -63,7 +64,8 @@ public class ReservationController {
                     .build();
 
             shopReservations.add(shopReservation);
+            countListReservation.getAndIncrement();
         });
-        return ResponseEntity.ok().body(ListReservation.of(countListReservation, shopReservations));
+        return ResponseEntity.ok().body(ListReservation.of(countListReservation.get(), shopReservations));
     }
 }

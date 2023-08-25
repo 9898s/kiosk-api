@@ -55,12 +55,6 @@ public class ShopService {
         shopRepository.delete(shop);
     }
 
-    // 매장 검색 수
-    @Transactional(readOnly = true)
-    public Long countSearchShop(String name) {
-        return shopRepository.countAllByNameContains(name);
-    }
-
     // 매장 검색
     @Transactional(readOnly = true)
     public List<Shop> searchShop(String name) {
