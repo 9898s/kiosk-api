@@ -28,7 +28,7 @@
 - 2023/08/22 ~ 2023/08/25
 
 ## ERD
-![tabledb](https://github.com/9898s/kiosk-api/assets/46531692/214ef46d-0a26-415a-9f30-a6ede3095352)
+<img src="https://github.com/9898s/kiosk-api/assets/46531692/214ef46d-0a26-415a-9f30-a6ede3095352" width="50%" height="50%">
 
 <hr>
 
