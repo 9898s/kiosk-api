@@ -1,14 +1,14 @@
-package com.example.kiosk.manager.exception;
+package com.example.kiosk.global.exception;
 
 import com.example.kiosk.global.type.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class ManagerException extends RuntimeException {
+public class ShopException extends RuntimeException {
     private final ErrorCode errorCode;
     private final String errorMessage;
 
-    public ManagerException(ErrorCode errorCode) {
+    public ShopException(ErrorCode errorCode) {
         this.errorCode = errorCode;
         this.errorMessage = errorCode.getDescription();
     }

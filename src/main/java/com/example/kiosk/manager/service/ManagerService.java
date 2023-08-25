@@ -2,7 +2,7 @@ package com.example.kiosk.manager.service;
 
 import com.example.kiosk.manager.entity.Manager;
 import com.example.kiosk.manager.entity.ManagerRepository;
-import com.example.kiosk.manager.exception.ManagerException;
+import com.example.kiosk.global.exception.ManagerException;
 import com.example.kiosk.manager.model.SignupManager;
 import com.example.kiosk.manager.model.UpdateManager;
 import lombok.RequiredArgsConstructor;

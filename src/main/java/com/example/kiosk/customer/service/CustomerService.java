@@ -2,7 +2,7 @@ package com.example.kiosk.customer.service;
 
 import com.example.kiosk.customer.entity.Customer;
 import com.example.kiosk.customer.entity.CustomerRepository;
-import com.example.kiosk.customer.exception.CustomerException;
+import com.example.kiosk.global.exception.CustomerException;
 import com.example.kiosk.customer.model.SignupCustomer;
 import com.example.kiosk.customer.model.UpdateCustomer;
 import lombok.RequiredArgsConstructor;

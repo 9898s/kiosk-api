@@ -4,7 +4,7 @@ import com.example.kiosk.customer.entity.Customer;
 import com.example.kiosk.customer.entity.CustomerRepository;
 import com.example.kiosk.reservation.entity.Reservation;
 import com.example.kiosk.reservation.entity.ReservationRepository;
-import com.example.kiosk.reservation.exception.ReservationException;
+import com.example.kiosk.global.exception.ReservationException;
 import com.example.kiosk.reservation.model.AddReservation;
 import com.example.kiosk.reservation.model.StatusReservation;
 import com.example.kiosk.reservation.model.UpdateReservation;

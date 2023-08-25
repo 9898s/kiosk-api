@@ -4,7 +4,7 @@ import com.example.kiosk.reservation.entity.Reservation;
 import com.example.kiosk.reservation.entity.ReservationRepository;
 import com.example.kiosk.review.entity.Review;
 import com.example.kiosk.review.entity.ReviewRepository;
-import com.example.kiosk.review.exception.ReviewException;
+import com.example.kiosk.global.exception.ReviewException;
 import com.example.kiosk.review.model.AddReview;
 import com.example.kiosk.review.model.UpdateReview;
 import lombok.RequiredArgsConstructor;

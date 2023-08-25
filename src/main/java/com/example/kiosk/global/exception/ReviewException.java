@@ -1,4 +1,4 @@
-package com.example.kiosk.review.exception;
+package com.example.kiosk.global.exception;
 
 import com.example.kiosk.global.type.ErrorCode;
 import lombok.Getter;

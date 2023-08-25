@@ -1,14 +1,14 @@
-package com.example.kiosk.customer.exception;
+package com.example.kiosk.global.exception;
 
 import com.example.kiosk.global.type.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class CustomerException extends RuntimeException {
+public class ReservationException extends RuntimeException {
     private final ErrorCode errorCode;
     private final String errorMessage;
 
-    public CustomerException(ErrorCode errorCode) {
+    public ReservationException(ErrorCode errorCode) {
         this.errorCode = errorCode;
         this.errorMessage = errorCode.getDescription();
     }

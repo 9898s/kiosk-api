@@ -2,12 +2,12 @@ package com.example.kiosk.shop.service;
 
 import com.example.kiosk.manager.entity.Manager;
 import com.example.kiosk.manager.entity.ManagerRepository;
-import com.example.kiosk.manager.exception.ManagerException;
+import com.example.kiosk.global.exception.ManagerException;
 import com.example.kiosk.review.entity.Review;
 import com.example.kiosk.review.entity.ReviewRepository;
 import com.example.kiosk.shop.entity.Shop;
 import com.example.kiosk.shop.entity.ShopRepository;
-import com.example.kiosk.shop.exception.ShopException;
+import com.example.kiosk.global.exception.ShopException;
 import com.example.kiosk.shop.model.AddShop;
 import com.example.kiosk.shop.model.UpdateShop;
 import lombok.RequiredArgsConstructor;
