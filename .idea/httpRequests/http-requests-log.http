@@ -1,16 +1,9 @@
-POST http://localhost:8080/api/review/add
-Content-Type: application/json
-Content-Length: 66
+GET http://localhost:8080/api/shop/review/1
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-{
-  "contents": "맛있습니다. 강추!",
-  "reservationId": 1
-}
-
-<> 2023-08-25T020322.400.json
+<> 2023-08-25T195658.200.json
 
 ###
 
@@ -26,7 +19,7 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "reservationId": 1
 }
 
-<> 2023-08-25T020318.200.json
+<> 2023-08-25T195654.200.json
 
 ###
 
@@ -35,62 +28,7 @@ Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2023-08-25T020315.200.json
-
-###
-
-DELETE http://localhost:8080/api/review/delete/1
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-08-25T020311.400.json
-
-###
-
-PUT http://localhost:8080/api/review/update/1
-Content-Type: application/json
-Content-Length: 42
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "contents": "맛없어요.. 비추!"
-}
-
-<> 2023-08-25T020308.400.json
-
-###
-
-POST http://localhost:8080/api/review/add
-Content-Type: application/json
-Content-Length: 66
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "contents": "맛있습니다. 강추!",
-  "reservationId": 1
-}
-
-<> 2023-08-25T020304.400.json
-
-###
-
-PATCH http://localhost:8080/api/reservation/update/1
-Content-Type: application/json
-Content-Length: 46
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "reservationDate": "2023-08-25 02:01:01"
-}
-
-<> 2023-08-25T020300.400.json
+<> 2023-08-25T195651.200.json
 
 ###
 
@@ -104,10 +42,70 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 {
   "shopId": 1,
   "customerId": 1,
-  "reservationDate": "2023-08-25 02:34:00"
+  "reservationDate": "2023-08-26 02:34:00"
 }
 
-<> 2023-08-25T020254.200.json
+<> 2023-08-25T195649.200.json
+
+###
+
+GET http://localhost:8080/api/reservation/arrive/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T195645.400.json
+
+###
+
+POST http://localhost:8080/api/review/add
+Content-Type: application/json
+Content-Length: 66
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "contents": "맛있습니다. 강추!",
+  "reservationId": 2
+}
+
+<> 2023-08-25T195634.400.json
+
+###
+
+GET http://localhost:8080/api/reservation/arrive/2
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T195632.400.json
+
+###
+
+POST http://localhost:8080/api/reservation/add
+Content-Type: application/json
+Content-Length: 80
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "shopId": 1,
+  "customerId": 2,
+  "reservationDate": "2023-08-26 02:34:00"
+}
+
+<> 2023-08-25T195630.400.json
+
+###
+
+GET http://localhost:8080/api/shop/review/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T195548.400.json
 
 ###
 
@@ -125,7 +123,34 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "description": "카레 팝니다."
 }
 
-<> 2023-08-25T020251.200.json
+<> 2023-08-25T195545.200.json
+
+###
+
+GET http://localhost:8080/api/shop/review/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T195540.400.json
+
+###
+
+POST http://localhost:8080/api/shop/add
+Content-Type: application/json
+Content-Length: 119
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "managerId": 1,
+  "name": "카레 맛집",
+  "location": "서울 특별시",
+  "description": "카레 팝니다."
+}
+
+<> 2023-08-25T195537.200.json
 
 ###
 
@@ -142,7 +167,7 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "partnerYn": true
 }
 
-<> 2023-08-25T020248.200.json
+<> 2023-08-25T195534.200.json
 
 ###
 
@@ -156,10 +181,35 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 {
   "email": "test@test.com",
   "password": "1111",
-  "phone": "010-1111-1111"
+  "phone": "010-1111-1112"
 }
 
-<> 2023-08-25T020246.200.json
+<> 2023-08-25T195531.200.json
+
+###
+
+GET http://localhost:8080/api/shop/review/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T195301.200.json
+
+###
+
+POST http://localhost:8080/api/review/add
+Content-Type: application/json
+Content-Length: 66
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "contents": "맛있습니다. 강추!",
+  "reservationId": 2
+}
+
+<> 2023-08-25T195258.200.json
 
 ###
 
@@ -175,7 +225,59 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "reservationId": 1
 }
 
-<> 2023-08-25T020152.400.json
+<> 2023-08-25T195255.400.json
+
+###
+
+GET http://localhost:8080/api/reservation/arrive/2
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T195251.200.json
+
+###
+
+POST http://localhost:8080/api/reservation/add
+Content-Type: application/json
+Content-Length: 80
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "shopId": 1,
+  "customerId": 2,
+  "reservationDate": "2023-08-26 02:34:00"
+}
+
+<> 2023-08-25T195247.200.json
+
+###
+
+POST http://localhost:8080/api/customer/signup
+Content-Type: application/json
+Content-Length: 80
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "test@test.com",
+  "password": "1111",
+  "phone": "010-1111-1112"
+}
+
+<> 2023-08-25T195238.200.json
+
+###
+
+GET http://localhost:8080/api/shop/review/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T195228.200.json
 
 ###
 
@@ -191,7 +293,16 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "reservationId": 1
 }
 
-<> 2023-08-25T020151.200.json
+<> 2023-08-25T195222.200.json
+
+###
+
+GET http://localhost:8080/api/reservation/arrive/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T195220.200.json
 
 ###
 
@@ -205,27 +316,19 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 {
   "shopId": 1,
   "customerId": 1,
-  "reservationDate": "2023-08-25 02:34:00"
+  "reservationDate": "2023-08-26 02:34:00"
 }
 
-<> 2023-08-25T020144.200.json
+<> 2023-08-25T195218.200.json
 
 ###
 
-POST http://localhost:8080/api/reservation/add
-Content-Type: application/json
-Content-Length: 80
+GET http://localhost:8080/api/shop/review/1
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-{
-  "shopId": 1,
-  "customerId": 1,
-  "reservationDate": "2023-08-25 02:34:00"
-}
-
-<> 2023-08-25T020141.200.json
+<> 2023-08-25T195215.200.json
 
 ###
 
@@ -243,7 +346,7 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "description": "카레 팝니다."
 }
 
-<> 2023-08-25T020138.200.json
+<> 2023-08-25T195211.200.json
 
 ###
 
@@ -260,24 +363,42 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "partnerYn": true
 }
 
-<> 2023-08-25T020136.200.json
+<> 2023-08-25T195209.200.json
 
 ###
 
 POST http://localhost:8080/api/customer/signup
 Content-Type: application/json
-Content-Length: 80
+Content-Length: 81
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
-  "email": "test@test.com",
+  "email": "test@test.com2",
   "password": "1111",
-  "phone": "010-1111-1111"
+  "phone": "010-1111-1112"
 }
 
-<> 2023-08-25T020133.200.json
+<> 2023-08-25T195206.200.json
+
+###
+
+GET http://localhost:8080/api/shop/review/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T195203.200.json
+
+###
+
+GET http://localhost:8080/api/shop/review/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T194235.200.json
 
 ###
 
@@ -293,7 +414,32 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "reservationId": 1
 }
 
-<> 2023-08-25T020131.400.json
+<> 2023-08-25T194228.400.json
+
+###
+
+POST http://localhost:8080/api/review/add
+Content-Type: application/json
+Content-Length: 66
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "contents": "맛있습니다. 강추!",
+  "reservationId": 1
+}
+
+<> 2023-08-25T194224.200.json
+
+###
+
+GET http://localhost:8080/api/reservation/arrive/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T194221.200.json
 
 ###
 
@@ -307,10 +453,10 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 {
   "shopId": 1,
   "customerId": 1,
-  "reservationDate": "2023-08-25 02:34:00"
+  "reservationDate": "2023-08-26 02:34:00"
 }
 
-<> 2023-08-25T015811.500.json
+<> 2023-08-25T194214.200.json
 
 ###
 
@@ -323,11 +469,20 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
   "shopId": 1,
-  "customerId": 1,
-  "reservationDate": "2023-08-25 02:34:00"
+  "customerId": 2,
+  "reservationDate": "2023-08-26 02:34:00"
 }
 
-<> 2023-08-25T015759.500.json
+<> 2023-08-25T194211.400.json
+
+###
+
+GET http://localhost:8080/api/shop/review/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T194206.200.json
 
 ###
 
@@ -345,7 +500,7 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "description": "카레 팝니다."
 }
 
-<> 2023-08-25T015756.200.json
+<> 2023-08-25T194203.200.json
 
 ###
 
@@ -362,11 +517,37 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "partnerYn": true
 }
 
-<> 2023-08-25T015753.200.json
+<> 2023-08-25T194201.200.json
 
 ###
 
 POST http://localhost:8080/api/customer/signup
+Content-Type: application/json
+Content-Length: 81
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "test@test.com2",
+  "password": "1111",
+  "phone": "010-1111-1112"
+}
+
+<> 2023-08-25T194156.200.json
+
+###
+
+GET http://localhost:8080/api/reservation/list/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T192812.200.json
+
+###
+
+POST http://localhost:8080/api/reservation/add
 Content-Type: application/json
 Content-Length: 80
 Connection: Keep-Alive
@@ -374,12 +555,30 @@ User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
-  "email": "test@test.com",
-  "password": "1111",
-  "phone": "010-1111-1111"
+  "shopId": 1,
+  "customerId": 2,
+  "reservationDate": "2023-08-26 02:34:00"
 }
 
-<> 2023-08-25T015752.200.json
+<> 2023-08-25T192806.200.json
+
+###
+
+GET http://localhost:8080/api/reservation/list/2
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T192759.200.json
+
+###
+
+GET http://localhost:8080/api/reservation/list/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T192735.200.json
 
 ###
 
@@ -393,10 +592,10 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 {
   "shopId": 1,
   "customerId": 1,
-  "reservationDate": "2023-08-25 02:34:00"
+  "reservationDate": "2023-08-26 02:34:00"
 }
 
-<> 2023-08-25T015645.200.json
+<> 2023-08-25T192724.200.json
 
 ###
 
@@ -414,7 +613,7 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "description": "카레 팝니다."
 }
 
-<> 2023-08-25T015642.200.json
+<> 2023-08-25T192719.200.json
 
 ###
 
@@ -431,7 +630,24 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "partnerYn": true
 }
 
-<> 2023-08-25T015640.200.json
+<> 2023-08-25T192716.200.json
+
+###
+
+POST http://localhost:8080/api/customer/signup
+Content-Type: application/json
+Content-Length: 81
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "test@test.com2",
+  "password": "1111",
+  "phone": "010-1111-1112"
+}
+
+<> 2023-08-25T192712.200.json
 
 ###
 
@@ -448,364 +664,26 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "phone": "010-1111-1111"
 }
 
-<> 2023-08-25T015637.200.json
+<> 2023-08-25T192707.200.json
 
 ###
 
-POST http://localhost:8080/api/reservation/add
-Content-Type: application/json
-Content-Length: 80
+GET http://localhost:8080/api/reservation/list/1
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-{
-  "shopId": 1,
-  "customerId": 1,
-  "reservationDate": "2023-08-25 02:34:00"
-}
-
-<> 2023-08-25T015456.200.json
+<> 2023-08-25T192543.200.json
 
 ###
 
-POST http://localhost:8080/api/shop/add
-Content-Type: application/json
-Content-Length: 119
+PATCH http://localhost:8080/api/reservation/cancel/1
+Content-Length: 0
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-{
-  "managerId": 1,
-  "name": "카레 맛집",
-  "location": "서울 특별시",
-  "description": "카레 팝니다."
-}
-
-<> 2023-08-25T015453.200.json
-
-###
-
-POST http://localhost:8080/api/manager/signup
-Content-Type: application/json
-Content-Length: 73
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "test@test.com",
-  "password": "1111",
-  "partnerYn": true
-}
-
-<> 2023-08-25T015450.200.json
-
-###
-
-POST http://localhost:8080/api/customer/signup
-Content-Type: application/json
-Content-Length: 80
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "test@test.com",
-  "password": "1111",
-  "phone": "010-1111-1111"
-}
-
-<> 2023-08-25T015448.200.json
-
-###
-
-POST http://localhost:8080/api/review/add
-Content-Type: application/json
-Content-Length: 66
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "contents": "맛있습니다. 강추!",
-  "reservationId": 1
-}
-
-<> 2023-08-25T015107.400.json
-
-###
-
-POST http://localhost:8080/api/review/add
-Content-Type: application/json
-Content-Length: 66
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "contents": "맛있습니다. 강추!",
-  "reservationId": 1
-}
-
-<> 2023-08-25T015104.200.json
-
-###
-
-POST http://localhost:8080/api/reservation/add
-Content-Type: application/json
-Content-Length: 80
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "shopId": 1,
-  "customerId": 1,
-  "reservationDate": "2023-08-25 02:34:00"
-}
-
-<> 2023-08-25T015057.200.json
-
-###
-
-POST http://localhost:8080/api/shop/add
-Content-Type: application/json
-Content-Length: 119
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "managerId": 1,
-  "name": "카레 맛집",
-  "location": "서울 특별시",
-  "description": "카레 팝니다."
-}
-
-<> 2023-08-25T015052.200.json
-
-###
-
-POST http://localhost:8080/api/manager/signup
-Content-Type: application/json
-Content-Length: 73
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "test@test.com",
-  "password": "1111",
-  "partnerYn": true
-}
-
-<> 2023-08-25T015049.200.json
-
-###
-
-POST http://localhost:8080/api/customer/signup
-Content-Type: application/json
-Content-Length: 80
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "test@test.com",
-  "password": "1111",
-  "phone": "010-1111-1111"
-}
-
-<> 2023-08-25T015047.200.json
-
-###
-
-POST http://localhost:8080/api/review/add
-Content-Type: application/json
-Content-Length: 66
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "contents": "맛있습니다. 강추!",
-  "reservationId": 1
-}
-
-<> 2023-08-25T014728.200.json
-
-###
-
-POST http://localhost:8080/api/review/add
-Content-Type: application/json
-Content-Length: 66
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "contents": "맛있습니다. 강추!",
-  "reservationId": 1
-}
-
-<> 2023-08-25T014722.200.json
-
-###
-
-POST http://localhost:8080/api/reservation/add
-Content-Type: application/json
-Content-Length: 80
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "shopId": 1,
-  "customerId": 1,
-  "reservationDate": "2023-08-25 02:34:00"
-}
-
-<> 2023-08-25T014717.200.json
-
-###
-
-POST http://localhost:8080/api/shop/add
-Content-Type: application/json
-Content-Length: 119
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "managerId": 1,
-  "name": "카레 맛집",
-  "location": "서울 특별시",
-  "description": "카레 팝니다."
-}
-
-<> 2023-08-25T014714.200.json
-
-###
-
-POST http://localhost:8080/api/manager/signup
-Content-Type: application/json
-Content-Length: 73
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "test@test.com",
-  "password": "1111",
-  "partnerYn": true
-}
-
-<> 2023-08-25T014711.200.json
-
-###
-
-POST http://localhost:8080/api/shop/add
-Content-Type: application/json
-Content-Length: 119
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "managerId": 1,
-  "name": "카레 맛집",
-  "location": "서울 특별시",
-  "description": "카레 팝니다."
-}
-
-<> 2023-08-25T014707.400.json
-
-###
-
-POST http://localhost:8080/api/reservation/add
-Content-Type: application/json
-Content-Length: 80
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "shopId": 1,
-  "customerId": 1,
-  "reservationDate": "2023-08-25 02:34:00"
-}
-
-<> 2023-08-25T014703.400.json
-
-###
-
-POST http://localhost:8080/api/shop/add
-Content-Type: application/json
-Content-Length: 119
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "managerId": 1,
-  "name": "카레 맛집",
-  "location": "서울 특별시",
-  "description": "카레 팝니다."
-}
-
-<> 2023-08-25T014700.400.json
-
-###
-
-POST http://localhost:8080/api/customer/signup
-Content-Type: application/json
-Content-Length: 80
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "test@test.com",
-  "password": "1111",
-  "phone": "010-1111-1111"
-}
-
-<> 2023-08-25T014655.200.json
-
-###
-
-DELETE http://localhost:8080/api/review/delete/1
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-08-25T014334.200.json
-
-###
-
-DELETE http://localhost:8080/api/review/delete/1
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-08-25T014333.200.json
-
-###
-
-PUT http://localhost:8080/api/review/update/1
-Content-Type: application/json
-Content-Length: 42
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "contents": "맛없어요.. 비추!"
-}
-
-<> 2023-08-25T014328.200.json
+<> 2023-08-25T192542.400.json
 
 ###
 

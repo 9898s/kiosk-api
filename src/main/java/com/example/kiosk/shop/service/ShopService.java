@@ -3,6 +3,8 @@ package com.example.kiosk.shop.service;
 import com.example.kiosk.manager.entity.Manager;
 import com.example.kiosk.manager.entity.ManagerRepository;
 import com.example.kiosk.manager.exception.ManagerException;
+import com.example.kiosk.review.entity.Review;
+import com.example.kiosk.review.entity.ReviewRepository;
 import com.example.kiosk.shop.entity.Shop;
 import com.example.kiosk.shop.entity.ShopRepository;
 import com.example.kiosk.shop.exception.ShopException;
@@ -22,6 +24,7 @@ import static com.example.kiosk.global.type.ErrorCode.NOT_FOUND_SHOP_ID;
 public class ShopService {
     private final ShopRepository shopRepository;
     private final ManagerRepository managerRepository;
+    private final ReviewRepository reviewRepository;
 
     // 매장 등록
     @Transactional
@@ -68,6 +71,12 @@ public class ShopService {
     @Transactional(readOnly = true)
     public Shop detailShop(Long id) {
         return getShopId(id);
+    }
+
+    // 매장 리뷰 목록
+    @Transactional(readOnly = true)
+    public List<Review> reviewListShop(Long id) {
+        return reviewRepository.findAllByShopId(id);
     }
 
     // 매장 아이디 번호

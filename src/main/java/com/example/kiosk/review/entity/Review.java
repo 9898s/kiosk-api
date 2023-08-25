@@ -2,6 +2,7 @@ package com.example.kiosk.review.entity;
 
 import com.example.kiosk.global.domain.BaseEntity;
 import com.example.kiosk.reservation.entity.Reservation;
+import com.example.kiosk.shop.entity.Shop;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,6 +33,10 @@ public class Review extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
+
+    @ManyToOne
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
 
     public void deleteReview() {
         this.deletedYn = true;

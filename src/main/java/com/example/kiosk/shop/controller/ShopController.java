@@ -1,5 +1,6 @@
 package com.example.kiosk.shop.controller;
 
+import com.example.kiosk.review.entity.Review;
 import com.example.kiosk.shop.entity.Shop;
 import com.example.kiosk.shop.model.*;
 import com.example.kiosk.shop.service.ShopService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @RequestMapping("/api/shop")
 @RequiredArgsConstructor
@@ -38,8 +40,8 @@ public class ShopController {
     }
 
     // 매장 검색
-    @GetMapping("/search")
-    public ResponseEntity<?> searchShop(@RequestParam String name) {
+    @GetMapping("/search/{name}")
+    public ResponseEntity<?> searchShop(@PathVariable String name) {
         List<Shop> shopList = shopService.searchShop(name);
 
         long countShop = shopService.countSearchShop(name);
@@ -59,9 +61,31 @@ public class ShopController {
     }
 
     // 매장 정보
-    @GetMapping("/detail")
-    public ResponseEntity<?> detailShop(@RequestParam Long id) {
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<?> detailShop(@PathVariable Long id) {
         Shop shop = shopService.detailShop(id);
         return ResponseEntity.ok().body(DetailShop.of(shop));
+    }
+
+    // 매장 리뷰
+    @GetMapping("/review/{id}")
+    public ResponseEntity<?> reviewListShop(@PathVariable Long id) {
+        List<Review> reviews = shopService.reviewListShop(id);
+
+        AtomicLong countReviews = new AtomicLong(0L);
+        List<ReviewShop> reviewShopList = new ArrayList<>();
+
+        reviews.forEach(e -> {
+            ReviewShop reviewShop = ReviewShop.builder()
+                    .customerEmail(e.getReservation().getCustomer().getEmail())
+                    .contents(e.getContents())
+                    .createdDate(e.getCreatedDate())
+                    .build();
+
+            reviewShopList.add(reviewShop);
+            countReviews.getAndIncrement();
+        });
+
+        return ResponseEntity.ok().body(ReviewShopList.of(countReviews.get(), reviewShopList));
     }
 }

@@ -26,6 +26,7 @@ public class AddReview {
             return Review.builder()
                     .contents(this.contents)
                     .reservation(reservation)
+                    .shop(reservation.getShop())
                     .build();
         }
     }
